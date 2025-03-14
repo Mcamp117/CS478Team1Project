@@ -1,8 +1,16 @@
-[gd_scene load_steps=2 format=3 uid="uid://c44h63ohfqgfy"]
+[gd_scene load_steps=3 format=3 uid="uid://c44h63ohfqgfy"]
 
 [ext_resource type="Texture2D" uid="uid://daec2v4i7leq4" path="res://Background/placeholder.png" id="1_s1ons"]
+[ext_resource type="Script" uid="uid://brknwms6kk5gm" path="res://fightTestSceneStart.gd" id="2_eiy7p"]
 
-[node name="MarginContainer" type="MarginContainer"]
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -11,7 +19,7 @@ grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Label" type="Label" parent="."]
+[node name="Label" type="Label" parent="MarginContainer"]
 z_index = 1
 layout_mode = 2
 text = "video game
@@ -19,7 +27,18 @@ best video game
 3eam t3am"
 horizontal_alignment = 1
 
-[node name="Placeholder" type="Sprite2D" parent="."]
+[node name="Placeholder" type="Sprite2D" parent="MarginContainer"]
 position = Vector2(759.667, 569)
 scale = Vector2(1.48177, 1.48177)
 texture = ExtResource("1_s1ons")
+
+[node name="fightTest" type="Button" parent="."]
+layout_mode = 0
+offset_left = 326.0
+offset_top = 528.0
+offset_right = 570.0
+offset_bottom = 607.0
+text = "start fight scene debug"
+script = ExtResource("2_eiy7p")
+
+[connection signal="pressed" from="fightTest" to="fightTest" method="_on_pressed"]
