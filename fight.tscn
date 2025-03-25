@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://cpte2tvl5m40j"]
+[gd_scene load_steps=19 format=3 uid="uid://cpte2tvl5m40j"]
 
 [ext_resource type="ArrayMesh" uid="uid://3khf5m6jy015" path="res://FightScene/Models/fightGround.obj" id="1_3mnov"]
 [ext_resource type="Script" uid="uid://3e1fe85cktb5" path="res://cameraRotate.gd" id="2_m6wut"]
@@ -8,6 +8,7 @@
 [ext_resource type="Shader" uid="uid://ve512qg8qhf6" path="res://FightScene/heatHaze.gdshader" id="6_562p4"]
 [ext_resource type="PackedScene" uid="uid://s6ppynbajdkf" path="res://FightScene/confettiparticles.tscn" id="7_y7cdv"]
 [ext_resource type="Shader" uid="uid://llecpgurupai" path="res://2dHeatHaze.gdshader" id="8_1u4tr"]
+[ext_resource type="Script" uid="uid://bgrr7s7das0aa" path="res://FightScene/fight_controller.gd" id="9_hcub5"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3mnov"]
 albedo_color = Color(0.353128, 0.266219, 0.0845254, 0.647059)
@@ -131,5 +132,8 @@ texture = SubResource("GradientTexture1D_562p4")
 material = SubResource("ShaderMaterial_1u4tr")
 position = Vector2(590, 341)
 randomness = 1.0
+
+[node name="FightController" type="Node" parent="."]
+script = ExtResource("9_hcub5")
 
 [connection signal="finished" from="AudioStreamPlayer3D" to="Node3D" method="_on_audio_stream_player_3d_finished"]
