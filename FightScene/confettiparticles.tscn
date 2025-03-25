@@ -1,0 +1,67 @@
+[gd_scene load_steps=11 format=3 uid="uid://s6ppynbajdkf"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_jg3ml"]
+particles_animation = true
+particles_anim_h_frames = 2
+particles_anim_v_frames = 1
+particles_anim_loop = true
+
+[sub_resource type="Curve" id="Curve_f6bv6"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.781818, 0.977528), -0.14261, -0.14261, 0, 0, Vector2(1, 0.662921), -0.926967, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_fd8p1"]
+curve = SubResource("Curve_f6bv6")
+
+[sub_resource type="Gradient" id="Gradient_jg3ml"]
+offsets = PackedFloat32Array(0.996241)
+colors = PackedColorArray(1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_smprt"]
+gradient = SubResource("Gradient_jg3ml")
+
+[sub_resource type="Curve" id="Curve_jg3ml"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_smprt"]
+curve = SubResource("Curve_jg3ml")
+
+[sub_resource type="Curve" id="Curve_smprt"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.939394, 0.955056), -0.0882824, -0.0882824, 0, 0, Vector2(0.993939, 0.662921), -1.27857, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_f6bv6"]
+curve = SubResource("Curve_smprt")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_smprt"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(1, 1, 1)
+direction = Vector3(1, -13, 0)
+spread = 166.056
+flatness = 1.0
+initial_velocity_min = 14.85
+initial_velocity_max = 272.43
+angular_velocity_min = 169.09
+angular_velocity_max = 529.09
+gravity = Vector3(0, 9.8, 0)
+linear_accel_min = 80.0
+linear_accel_max = 100.0
+damping_curve = SubResource("CurveTexture_smprt")
+scale_min = 48.48
+scale_max = 251.51
+scale_curve = SubResource("CurveTexture_f6bv6")
+color_initial_ramp = SubResource("GradientTexture1D_smprt")
+alpha_curve = SubResource("CurveTexture_fd8p1")
+hue_variation_min = -2.23517e-08
+hue_variation_max = -2.23517e-08
+anim_speed_min = 2.0
+anim_speed_max = 5.0
+anim_offset_max = 1.0
+
+[node name="GPUParticles2D" type="GPUParticles2D"]
+material = SubResource("CanvasItemMaterial_jg3ml")
+amount = 20
+lifetime = 1.4
+process_material = SubResource("ParticleProcessMaterial_smprt")
