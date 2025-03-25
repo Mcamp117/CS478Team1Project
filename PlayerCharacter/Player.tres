@@ -1,0 +1,7 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://3pmg6oap4n00"]
+
+[ext_resource type="Script" uid="uid://bhy0jfed28xoa" path="res://PlayerCharacter/Player.gd" id="1_m254f"]
+
+[resource]
+script = ExtResource("1_m254f")
+Health = 100
