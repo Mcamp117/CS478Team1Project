@@ -1,18 +1,33 @@
-[gd_scene load_steps=4 format=3 uid="uid://bm8qx3f3yey3w"]
+[gd_scene load_steps=5 format=3 uid="uid://bm8qx3f3yey3w"]
 
-[ext_resource type="Texture2D" uid="uid://guh1to3y6you" path="res://icon.svg" id="1_uk1rj"]
 [ext_resource type="Script" uid="uid://b856i52r5oko4" path="res://OverWorld/overWorldPlayer.gd" id="1_wyehu"]
+[ext_resource type="Texture2D" uid="uid://brgtolufkv44u" path="res://GameDesigns/HeroSprite.png" id="2_xnk51"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uk1rj"]
-size = Vector2(36, 34)
+size = Vector2(24, 30)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xnk51"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_xnk51")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [node name="CharacterBody2D" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 5
 script = ExtResource("1_wyehu")
 speed = 100.0
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.278125, 0.26025)
-texture = ExtResource("1_uk1rj")
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 2)
 shape = SubResource("RectangleShape2D_uk1rj")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, 1)
+scale = Vector2(0.07, 0.0800001)
+sprite_frames = SubResource("SpriteFrames_xnk51")
