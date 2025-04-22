@@ -479,6 +479,7 @@ text = "take damage
 "
 
 [node name="main menu" type="Button" parent="CanvasLayer"]
+texture_filter = 3
 offset_left = 13.0
 offset_top = 146.0
 offset_right = 129.0
@@ -503,6 +504,7 @@ scale = Vector2(2.5, 25)
 texture = SubResource("GradientTexture1D_562p4")
 
 [node name="PlayerHealthLabel" type="Label" parent="CanvasLayer/GridContainer/PlayerHealth"]
+texture_filter = 3
 offset_left = -25.0
 offset_top = -1.0
 offset_right = 15.0
@@ -516,6 +518,7 @@ scale = Vector2(2.5, 25)
 texture = SubResource("GradientTexture1D_562p4")
 
 [node name="EnemyHealthLabel" type="Label" parent="CanvasLayer/GridContainer/EnemyHealth"]
+texture_filter = 3
 offset_left = -26.8
 offset_top = -1.12
 offset_right = 13.2
@@ -524,6 +527,7 @@ scale = Vector2(0.998, 0.112)
 text = "100"
 
 [node name="Attack" type="Button" parent="CanvasLayer"]
+texture_filter = 3
 offset_left = 72.0
 offset_top = 511.0
 offset_right = 227.0
@@ -539,6 +543,7 @@ randomness = 1.0
 script = ExtResource("9_hcub5")
 
 [node name="miss" type="Label" parent="FightController"]
+texture_filter = 3
 offset_left = 555.0
 offset_top = 284.0
 offset_right = 597.0
