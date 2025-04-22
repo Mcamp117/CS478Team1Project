@@ -1,0 +1,562 @@
+[gd_scene load_steps=32 format=3 uid="uid://cjh07464np57e"]
+
+[ext_resource type="ArrayMesh" uid="uid://3khf5m6jy015" path="res://FightScene/Models/fightGround.obj" id="1_3mnov"]
+[ext_resource type="Script" uid="uid://3e1fe85cktb5" path="res://FightScene/cameraRotate.gd" id="2_m6wut"]
+[ext_resource type="Texture2D" uid="uid://dmixadkijfeur" path="res://GameDesigns/HeroSprite.png" id="4_c5luh"]
+[ext_resource type="Texture2D" uid="uid://bch022ksvn036" path="res://GameDesigns/CityCop (1).png" id="5_1b6oj"]
+[ext_resource type="AudioStream" uid="uid://x6dbyxbypdk7" path="res://FightScene/music/masons socks are mine now 3.14.25 QUIETER.wav" id="5_34m47"]
+[ext_resource type="AudioStream" uid="uid://cnyuncqk3563e" path="res://FightScene/FightSounds/HitSound.mp3" id="5_3677d"]
+[ext_resource type="Shader" uid="uid://ve512qg8qhf6" path="res://FightScene/heatHaze.gdshader" id="6_562p4"]
+[ext_resource type="Texture2D" uid="uid://vovfqfu46v55" path="res://FightScene/Sprites/red arrow.png" id="6_3677d"]
+[ext_resource type="PackedScene" uid="uid://s6ppynbajdkf" path="res://FightScene/confettiparticles.tscn" id="7_y7cdv"]
+[ext_resource type="Shader" uid="uid://llecpgurupai" path="res://FightScene/2dHeatHaze.gdshader" id="8_1u4tr"]
+[ext_resource type="Shader" uid="uid://cqrlu6h27ejia" path="res://FightScene/laserBeam.gdshader" id="8_am5y6"]
+[ext_resource type="Script" uid="uid://bgrr7s7das0aa" path="res://FightScene/fight_controller.gd" id="9_hcub5"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3mnov"]
+albedo_color = Color(0.353128, 0.266219, 0.0845254, 0.647059)
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_3mnov"]
+sky_top_color = Color(0.728579, 0.218728, 0.16943, 1)
+sky_horizon_color = Color(0.341222, 0.149226, 0.0591635, 1)
+ground_horizon_color = Color(0.341176, 0.14902, 0.0588235, 1)
+ground_curve = 1.19428
+
+[sub_resource type="Sky" id="Sky_m6wut"]
+sky_material = SubResource("ProceduralSkyMaterial_3mnov")
+
+[sub_resource type="Environment" id="Environment_3mnov"]
+background_mode = 2
+background_camera_feed_id = 2
+sky = SubResource("Sky_m6wut")
+
+[sub_resource type="QuadMesh" id="QuadMesh_34m47"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_562p4"]
+render_priority = -1
+shader = ExtResource("6_562p4")
+shader_parameter/max_shift = 0.595
+shader_parameter/speed = 0.03
+shader_parameter/min_heathaze_dist = -0.125
+
+[sub_resource type="Animation" id="Animation_1b6oj"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-1, 0.541724, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.224034, 0.202978, 0.0641439)]
+}
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_1b6oj"]
+random_pitch = 1.2
+streams_count = 1
+stream_0/stream = ExtResource("5_3677d")
+
+[sub_resource type="Animation" id="Animation_c5luh"]
+resource_name = "player_attack"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0666667, 0.233333, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(-1, 0.541724, 0), Vector3(-1.55704, 0.756676, 0), Vector3(0.280914, 0.756676, 0), Vector3(-1, 0.541724, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.0666667, 0.233333, 0.613333),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, 0.611197), Vector3(0, 0, 0.611197), Vector3(0, 0, 6.28319)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.433333, 0.613333, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0.224034, 0.202978, 0.0641439), Vector3(0.224034, 0.202978, 0.0641439), Vector3(-0.004, -0.003, -0.001), Vector3(0.196, 0.147, 0.049), Vector3(0.224034, 0.202978, 0.0641439)]
+}
+tracks/3/type = "audio"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../HitSound")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": SubResource("AudioStreamRandomizer_1b6oj")
+}],
+"times": PackedFloat32Array(0.233333)
+}
+tracks/3/use_blend = true
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../FightController")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.233333),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"damageEnemy"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_3677d"]
+_data = {
+&"RESET": SubResource("Animation_1b6oj"),
+&"player_attack": SubResource("Animation_c5luh")
+}
+
+[sub_resource type="Animation" id="Animation_am5y6"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.971907, 0.671053, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.429, 0.389, 0.122)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("LASER:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-2.13133, -0.0358728, 0.530473)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("LASER:scale")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(400, 300, 1)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("LASER:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_am5y6"]
+streams_count = 1
+stream_0/stream = ExtResource("5_3677d")
+
+[sub_resource type="Animation" id="Animation_3677d"]
+resource_name = "enemy_attack"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.933333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0.971907, 0.671053, 0), Vector3(1.62659, 0.671053, 0), Vector3(0.971907, 0.671053, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.633333, 0.8, 0.933333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, -1.01432), Vector3(0, 0, 0.689771), Vector3(0, 0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.0334333, 0.4, 0.933333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0.429, 0.389, 0.122), Vector3(0.429, 0.389, 0.122), Vector3(0.429, 0.389, 0.122), Vector3(0.914238, 0.307794, 0.122), Vector3(0.429, 0.389, 0.122)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("LASER:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.933333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(-2.13133, -0.0358728, 0.530473), Vector3(-2.13133, -0.0358728, 0.530473)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("LASER:scale")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.366667, 0.6, 0.933333),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(400, 300, 1), Vector3(400, 300, 1), Vector3(400, 800, 1), Vector3(400, 300, 1)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("LASER:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.6, 0.633333, 0.8, 0.933333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [false, false, true, false, false]
+}
+tracks/6/type = "audio"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("../HitSound")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": SubResource("AudioStreamRandomizer_am5y6")
+}],
+"times": PackedFloat32Array(0.733333)
+}
+tracks/6/use_blend = true
+tracks/7/type = "method"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("../FightController")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0.729465),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"damage_player"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_te0ic"]
+_data = {
+&"RESET": SubResource("Animation_am5y6"),
+&"enemy_attack": SubResource("Animation_3677d")
+}
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_am5y6"]
+render_priority = 0
+shader = ExtResource("8_am5y6")
+shader_parameter/beams = 2
+shader_parameter/energy = 3.0
+shader_parameter/roughness = 3
+shader_parameter/frequency = 10
+shader_parameter/speed = 1.0
+shader_parameter/thickness = 0.006
+shader_parameter/outline_thickness = 0.03
+shader_parameter/beam_difference = 0.0
+shader_parameter/glow = 0.0
+shader_parameter/outline_glow = 0.0
+shader_parameter/color = Color(0.91, 1, 1, 1)
+shader_parameter/outline_color = Color(1, 0.215615, 0.422891, 1)
+shader_parameter/progress = 1.0
+shader_parameter/y_offset = 0.0
+shader_parameter/fixed_edge_size = 0.05
+shader_parameter/noise_scale = Vector2(1, 1)
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_am5y6"]
+
+[sub_resource type="Gradient" id="Gradient_34m47"]
+offsets = PackedFloat32Array(0.481928)
+colors = PackedColorArray(0, 0.701961, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_562p4"]
+gradient = SubResource("Gradient_34m47")
+width = 100
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1u4tr"]
+shader = ExtResource("8_1u4tr")
+shader_parameter/force = 0.26
+shader_parameter/scale = 0.01
+
+[node name="Node3D" type="Node3D"]
+
+[node name="FightGround" type="MeshInstance3D" parent="."]
+material_override = SubResource("StandardMaterial3D_3mnov")
+mesh = ExtResource("1_3mnov")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.5, 0.866025, 0, -0.866025, 0.5, 0, 2.49053, 2)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_3mnov")
+
+[node name="Node3D" type="Node3D" parent="."]
+script = ExtResource("2_m6wut")
+
+[node name="Camera3D" type="Camera3D" parent="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 0.995668, 0.0929788, 0, -0.0929788, 0.995668, 0.0649043, 0.701115, 3.2779)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Node3D"]
+transform = Transform3D(100, 0, 0, 0, 96.6093, 25.8195, 0, -25.8195, 96.6093, 0.0649043, 0.701115, 1.4169)
+mesh = SubResource("QuadMesh_34m47")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("ShaderMaterial_562p4")
+
+[node name="Player" type="Sprite3D" parent="."]
+transform = Transform3D(0.224034, 0, 0, 0, 0.202978, 0, 0, 0, 0.0641439, -1, 0.541724, 0)
+texture = ExtResource("4_c5luh")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Player"]
+libraries = {
+&"": SubResource("AnimationLibrary_3677d")
+}
+
+[node name="PlayerArrow" type="Sprite3D" parent="Player"]
+transform = Transform3D(6.505, 0, 0, 0, 6.505, 0, 0, 0, 6.505, 0, 3.70158, 0)
+modulate = Color(0, 0, 0, 1)
+billboard = 1
+shaded = true
+texture_filter = 2
+texture = ExtResource("6_3677d")
+
+[node name="Shadow" type="Sprite3D" parent="Player/PlayerArrow"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.96046e-08, 0, 0)
+offset = Vector2(0.31, 2.155)
+billboard = 1
+shaded = true
+texture_filter = 2
+texture = ExtResource("6_3677d")
+
+[node name="Enemy" type="Sprite3D" parent="."]
+transform = Transform3D(0.429, 0, 0, 0, 0.389, 0, 0, 0, 0.122, 0.971907, 0.671053, 0)
+flip_h = true
+texture = ExtResource("5_1b6oj")
+
+[node name="EnemyArrow" type="Sprite3D" parent="Enemy"]
+transform = Transform3D(3.824, 0, 0, 0, 3.824, 0, 0, 0, 3.824, 0, 1.94, 0)
+flip_h = true
+modulate = Color(0, 0, 0, 1)
+billboard = 1
+shaded = true
+texture_filter = 2
+texture = ExtResource("6_3677d")
+
+[node name="Shadow" type="Sprite3D" parent="Enemy/EnemyArrow"]
+offset = Vector2(0.31, 2.155)
+flip_h = true
+billboard = 1
+shaded = true
+texture_filter = 2
+texture = ExtResource("6_3677d")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Enemy"]
+libraries = {
+&"": SubResource("AnimationLibrary_te0ic")
+}
+
+[node name="LASER" type="Sprite3D" parent="Enemy"]
+transform = Transform3D(400, 0, 0, 0, 300, 0, 0, 0, 1, -2.13133, -0.0358728, 0.530473)
+visible = false
+material_override = SubResource("ShaderMaterial_am5y6")
+texture = SubResource("PlaceholderTexture2D_am5y6")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("5_34m47")
+volume_db = -9.0
+autoplay = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="takeDamage" type="Button" parent="CanvasLayer"]
+offset_left = 359.0
+offset_top = 666.0
+offset_right = 629.0
+offset_bottom = 824.0
+text = "take damage
+"
+
+[node name="main menu" type="Button" parent="CanvasLayer"]
+texture_filter = 3
+offset_left = 13.0
+offset_top = 146.0
+offset_right = 129.0
+offset_bottom = 214.0
+text = "debug back to main menu"
+
+[node name="GridContainer" type="GridContainer" parent="CanvasLayer"]
+z_index = -1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 768.0
+offset_bottom = 432.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+metadata/_edit_lock_ = true
+
+[node name="PlayerHealth" type="Sprite2D" parent="CanvasLayer/GridContainer"]
+position = Vector2(225, 75)
+scale = Vector2(2.5, 25)
+texture = SubResource("GradientTexture1D_562p4")
+
+[node name="PlayerHealthLabel" type="Label" parent="CanvasLayer/GridContainer/PlayerHealth"]
+texture_filter = 3
+offset_left = -25.0
+offset_top = -1.0
+offset_right = 15.0
+offset_bottom = 22.0
+scale = Vector2(0.997758, 0.112)
+text = "100"
+
+[node name="EnemyHealth" type="Sprite2D" parent="CanvasLayer/GridContainer"]
+position = Vector2(910, 75)
+scale = Vector2(2.5, 25)
+texture = SubResource("GradientTexture1D_562p4")
+
+[node name="EnemyHealthLabel" type="Label" parent="CanvasLayer/GridContainer/EnemyHealth"]
+texture_filter = 3
+offset_left = -26.8
+offset_top = -1.12
+offset_right = 13.2
+offset_bottom = 21.88
+scale = Vector2(0.998, 0.112)
+text = "100"
+
+[node name="Attack" type="Button" parent="CanvasLayer"]
+texture_filter = 3
+offset_left = 72.0
+offset_top = 511.0
+offset_right = 227.0
+offset_bottom = 594.0
+text = "Attack"
+
+[node name="GPUParticles2D" parent="." instance=ExtResource("7_y7cdv")]
+material = SubResource("ShaderMaterial_1u4tr")
+position = Vector2(590, 341)
+randomness = 1.0
+
+[node name="FightController" type="Node" parent="."]
+script = ExtResource("9_hcub5")
+
+[node name="miss" type="Label" parent="FightController"]
+texture_filter = 3
+offset_left = 555.0
+offset_top = 284.0
+offset_right = 597.0
+offset_bottom = 309.0
+scale = Vector2(2.70499, 2.70499)
+text = "miss"
+
+[node name="HitSound" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(595, 340)
+volume_db = 3.0
+attenuation = 1e-05
+
+[connection signal="finished" from="AudioStreamPlayer3D" to="Node3D" method="_on_audio_stream_player_3d_finished"]
+[connection signal="pressed" from="CanvasLayer/takeDamage" to="FightController" method="_on_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/main menu" to="FightController" method="_on_button_2_pressed"]
+[connection signal="pressed" from="CanvasLayer/Attack" to="FightController" method="_on_button_3_pressed"]

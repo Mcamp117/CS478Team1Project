@@ -47,6 +47,7 @@ func EnemyTurn() -> void:
 		turn+=1
 		EnemyArrow.visible = false
 		PlayerArrow.visible=true
+		$"../CanvasLayer/Attack".disabled=false
 		check4Victor()
 func _on_button_pressed() -> void: #take damage
 	Player.Health-=10
@@ -64,6 +65,7 @@ func _on_button_3_pressed() -> void:#attack
 		EnemyArrow.visible = true
 		PlayerArrow.visible=false
 		check4Victor()
+		$"../CanvasLayer/Attack".disabled=true
 		EnemyTurn()
 	pass # Replace with function body.
 func checkHealth(john, healthbar)-> void:

@@ -22,10 +22,22 @@ Dialogic="*res://addons/dialogic/Core/DialogicGameHandler.gd"
 
 [dialogic]
 
-directories/dch_directory={}
+directories/dch_directory={
+"CityCop1": "res://Dialogue/Characters/CityCop1.dch",
+"CityCop2": "res://Dialogue/Characters/CityCop2.dch",
+"CityCop3": "res://Dialogue/Characters/CityCop3.dch",
+"CityCop4": "res://Dialogue/Characters/CityCop4.dch",
+"CrazyScientist": "res://Dialogue/Characters/CrazyScientist.dch",
+"Hero": "res://Dialogue/Characters/Hero.dch",
+"Narrator": "res://Dialogue/Characters/Narrator.dch",
+"OldMan": "res://Dialogue/Characters/OldMan.dch",
+"TheCreator": "res://Dialogue/Characters/TheCreator.dch"
+}
 directories/dtl_directory={
+"BarrierTimeline": "res://Dialogue/BarrierTimeline.dtl",
 "FightTimeline": "res://Dialogue/FightTimeline.dtl",
-"IntroTimeline": "res://Dialogue/IntroTimeline.dtl"
+"IntroTimeline": "res://Dialogue/IntroTimeline.dtl",
+"ScientistTimeline": "res://Dialogue/ScientistTimeline.dtl"
 }
 extensions_folder="res://addons/dialogic_additions"
 text/letter_speed=0.01
