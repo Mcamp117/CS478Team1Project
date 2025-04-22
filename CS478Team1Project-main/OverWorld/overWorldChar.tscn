@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://bm8qx3f3yey3w"]
 
 [ext_resource type="Script" uid="uid://b856i52r5oko4" path="res://OverWorld/overWorldPlayer.gd" id="1_wyehu"]
-[ext_resource type="Texture2D" uid="uid://brgtolufkv44u" path="res://GameDesigns/HeroSprite.png" id="2_xnk51"]
+[ext_resource type="Texture2D" uid="uid://dmixadkijfeur" path="res://GameDesigns/HeroSprite.png" id="2_xnk51"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uk1rj"]
 size = Vector2(24, 30)
