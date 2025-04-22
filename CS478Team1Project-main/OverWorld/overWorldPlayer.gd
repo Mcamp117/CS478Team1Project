@@ -11,6 +11,6 @@ func _physics_process(_delta):
 	velocity = dirInput * speed
 	if velocity.x<0:
 		characterSprite.flip_h = true
-	elif velocity.x >0:
+	else:
 		characterSprite.flip_h = false
 	move_and_slide()
