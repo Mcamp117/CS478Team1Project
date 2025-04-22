@@ -5,7 +5,7 @@ extends Node
 ###Inventory
 var weapon
 var max_capacity = 20
-
+var enemiesBeatenList=[]
 var itemList = []
 var questItemList = []
 
