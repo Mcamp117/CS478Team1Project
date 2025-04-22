@@ -538,6 +538,14 @@ randomness = 1.0
 [node name="FightController" type="Node" parent="."]
 script = ExtResource("9_hcub5")
 
+[node name="miss" type="Label" parent="FightController"]
+offset_left = 555.0
+offset_top = 284.0
+offset_right = 597.0
+offset_bottom = 309.0
+scale = Vector2(2.70499, 2.70499)
+text = "miss"
+
 [node name="HitSound" type="AudioStreamPlayer2D" parent="."]
 position = Vector2(595, 340)
 volume_db = 3.0

@@ -11,8 +11,10 @@ extends Node
 @onready var EnemyHealthLabel = $"../CanvasLayer/GridContainer/EnemyHealth/EnemyHealthLabel"
 @onready var PlayerArrow = $"../Player/PlayerArrow"
 @onready var EnemyArrow = $"../Enemy/EnemyArrow"
+@onready var missLabel = $miss
 var turn = 0
 func _ready() -> void:
+	missLabel.visible=false
 	PlayerAnim.play("RESET")
 	EnemyAnim.play("RESET")
 	playerHealth.text=str(Player.Health)
@@ -27,16 +29,21 @@ func whoGoesFirst() -> int:
 	return randi_range(0,1)
 func damageEnemy() -> void:
 	var damage = randi_range(EnemyDamageRange.x,EnemyDamageRange.y)
+	if damage<1:
+		spawn_miss_label()
 	enHealth-=damage
 	EnemyHealthLabel.text=str(enHealth)
 func damage_player() -> void:
 	var damage = randi_range(EnemyDamageRange.x,EnemyDamageRange.y)
+	if damage<1:
+		spawn_miss_label()
 	Player.Health-=damage
 	playerHealth.text=str(Player.Health)
 func EnemyTurn() -> void:
 	if turn%2 !=0:
 		EnemyAnim.play("enemy_attack")
 		await EnemyAnim.animation_finished
+		missLabel.visible=false
 		turn+=1
 		EnemyArrow.visible = false
 		PlayerArrow.visible=true
@@ -52,6 +59,7 @@ func _on_button_3_pressed() -> void:#attack
 	if turn%2 ==0:
 		PlayerAnim.play("player_attack")
 		await PlayerAnim.animation_finished
+		missLabel.visible=false
 		turn+=1
 		EnemyArrow.visible = true
 		PlayerArrow.visible=false
@@ -67,4 +75,9 @@ func check4Victor() -> void:
 	if enHealth<=0:
 		Player.enemiesBeatenList.append(1)
 		get_tree().change_scene_to_packed(overworldScene)
-		
+
+func spawn_miss_label():
+	missLabel.visible = true
+	#var screen_size = get_viewport().get_size()
+	missLabel.position.x += randi_range(-40, 40)
+	missLabel.position.y += randi_range(-40, 40)
