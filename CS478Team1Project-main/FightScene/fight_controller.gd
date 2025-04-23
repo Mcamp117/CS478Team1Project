@@ -6,8 +6,8 @@ extends Node
 @onready var PlayerAnim = $"../Player/AnimationPlayer"
 @onready var Hitsound =$"../HitSound"
 var EnemyAnim 
-@export var EnemyDamageRange = Vector2(0,8)
-@export var enHealth = 20
+var EnemyDamageRange : Vector2
+var enHealth : int
 @onready var EnemyHealthLabel = $"../CanvasLayer/GridContainer/EnemyHealth/EnemyHealthLabel"
 @onready var PlayerArrow = $"../Player/PlayerArrow"
 var EnemyArrow
@@ -17,7 +17,11 @@ func _ready() -> void:
 	var Enemy
 	if Player.currentlyFighting == Player.enemyList.Cop:
 		Enemy = load("res://FightScene/CopEnemy.tscn")
+	if Player.currentlyFighting == Player.enemyList.Oppenheimer:
+		Enemy = load("res://FightScene/OppenheimerEnemy.tscn")
 	add_child(Enemy.instantiate())
+	enHealth = $"Enemy".EnemyHealth
+	EnemyDamageRange = $"Enemy".EnemyDamage
 	EnemyAnim =$"Enemy/AnimationPlayer"
 	EnemyArrow = $"Enemy/EnemyArrow"
 	missLabel.visible=false

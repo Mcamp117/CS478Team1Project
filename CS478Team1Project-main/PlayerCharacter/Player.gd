@@ -6,7 +6,8 @@ extends Node
 enum enemyList  {
 	Cop,
 	Rat,
-	YourFeelings
+	YourFeelings,
+	Oppenheimer
 }
 @export var currentlyFighting : enemyList
 var weapon
