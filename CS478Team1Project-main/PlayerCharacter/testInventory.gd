@@ -3,8 +3,16 @@ extends Node2D
 @onready var textbox = $RichTextLabel
 @onready var selectbox = $ItemList
 @onready var textedit = $TextEdit
+@onready var canILabel = $YOUCANTEQUIPTHAT
+@onready var DamageLabel = $Damage/Damage
+@onready var DefenseLabel = $Defense/Defense
+@onready var WeaponImage=$EquippedWeapon
+@onready var ArmorImage=$EquippedArmor
 var indx = null
 func _ready() -> void:
+	change_equipped_pics()
+	DamageLabel.text = str(int(Player.DamageRange.x))+"-"+str(int(Player.DamageRange.y))
+	DefenseLabel.text = str(Player.defense)
 	add_items_toList()
 func _onAddPressed() -> void:
 	Player.addItem(textedit.text)
@@ -42,6 +50,13 @@ func _on_button_5_pressed() -> void:
 	if indx!=null:
 		Player.selectItem(indx)
 	indx = null
+	if !Player.canEquip:
+		canILabel.visible=true
+		await get_tree().create_timer(.50).timeout
+		canILabel.visible=false
+	change_equipped_pics()
+	DamageLabel.text = str(int(Player.DamageRange.x))+"-"+str(int(Player.DamageRange.y))
+	DefenseLabel.text = str(Player.defense)
 	$RichTextLabel2.text= str(Player.weapon) + "\n" + str(Player.DamageRange) + "\n" + str(Player.armor) + "\n" + str(Player.defense)
 	pass # Replace with function body.
 func add_items_toList()-> void:
@@ -59,3 +74,7 @@ func add_items_toList()-> void:
 				selectbox.add_item(i,load("res://GameDesigns/Health_Pack.png"))
 			"Ooze":
 				selectbox.add_item(i,load("res://GameDesigns/Ooze.png"))
+func change_equipped_pics()-> void:
+	ArmorImage.texture=Player.armorImage
+	WeaponImage.texture=Player.weaponImage
+	
