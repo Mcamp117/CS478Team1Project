@@ -78,6 +78,7 @@ func _on_button_pressed() -> void: #take damage
 	playerHealth.text=str(Player.Health)
 	pass # Replace with function body.
 func _on_button_2_pressed() -> void: #go back home debug
+	Player.location=Vector2(0,15)
 	get_tree().change_scene_to_packed(overworldScene)
 	pass # Replace with function body.
 func _on_button_3_pressed() -> void:#attack
@@ -107,6 +108,7 @@ func _on_heal_pressed() -> void:
 	pass # Replace with function body.
 func check4Victor() -> void:
 	if Player.Health<=0:
+		Player.location=Vector2(0,15)
 		get_tree().change_scene_to_packed(MainMenuScene)
 	if enHealth<=0:
 		Player.enemiesBeatenList.append(EnemyInstance.EnemyName)

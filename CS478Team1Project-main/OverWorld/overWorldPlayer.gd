@@ -26,3 +26,13 @@ func _input(event: InputEvent) -> void:
 		else:
 			inventory.queue_free()
 			inventory = Inventory.instantiate()
+
+
+func _on_over_world_tree_exiting() -> void:
+	Player.location=self.position
+	pass # Replace with function body.
+
+
+func _on_over_world_tree_entered() -> void:
+	self.position=Player.location
+	pass # Replace with function body.

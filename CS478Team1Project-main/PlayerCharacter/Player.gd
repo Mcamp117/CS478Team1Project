@@ -9,6 +9,7 @@ enum enemyList  {
 	YourFeelings,
 	Oppenheimer
 }
+var location: Vector2
 @export var currentlyFighting : enemyList
 var armor
 var defense = 0

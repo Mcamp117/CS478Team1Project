@@ -218,9 +218,9 @@ text = "take damage
 
 [node name="main menu" type="Button" parent="CanvasLayer"]
 texture_filter = 3
-offset_left = 13.0
+offset_left = 19.0
 offset_top = 146.0
-offset_right = 129.0
+offset_right = 229.0
 offset_bottom = 214.0
 text = "debug back to main menu"
 
