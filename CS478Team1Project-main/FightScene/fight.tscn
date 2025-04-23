@@ -272,6 +272,14 @@ offset_right = 227.0
 offset_bottom = 594.0
 text = "Attack"
 
+[node name="Heal" type="Button" parent="CanvasLayer"]
+texture_filter = 3
+offset_left = 267.0
+offset_top = 511.0
+offset_right = 422.0
+offset_bottom = 594.0
+text = "Heal (1x)"
+
 [node name="GPUParticles2D" parent="." instance=ExtResource("7_y7cdv")]
 material = SubResource("ShaderMaterial_1u4tr")
 position = Vector2(590, 341)
@@ -299,3 +307,4 @@ attenuation = 1e-05
 [connection signal="pressed" from="CanvasLayer/takeDamage" to="FightController" method="_on_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/main menu" to="FightController" method="_on_button_2_pressed"]
 [connection signal="pressed" from="CanvasLayer/Attack" to="FightController" method="_on_button_3_pressed"]
+[connection signal="pressed" from="CanvasLayer/Heal" to="FightController" method="_on_heal_pressed"]

@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://c53f0p816ud5c"]
+[gd_scene load_steps=3 format=3 uid="uid://c53f0p816ud5c"]
 
 [ext_resource type="Script" uid="uid://c1if78g12q3vu" path="res://PlayerCharacter/testInventory.gd" id="1_6380j"]
+[ext_resource type="Texture2D" uid="uid://dmixadkijfeur" path="res://GameDesigns/HeroSprite.png" id="2_6iu11"]
 
 [node name="Inventory" type="Node2D"]
 script = ExtResource("1_6380j")
@@ -51,13 +52,26 @@ offset_bottom = 149.0
 text = "test"
 
 [node name="RichTextLabel2" type="RichTextLabel" parent="."]
-offset_left = 37.0
-offset_top = 112.0
-offset_right = 306.0
-offset_bottom = 261.0
+offset_left = 321.0
+offset_top = 233.0
+offset_right = 590.0
+offset_bottom = 322.0
+
+[node name="HeroSprite" type="Sprite2D" parent="."]
+position = Vector2(196, 140)
+scale = Vector2(0.3825, 0.3825)
+texture = ExtResource("2_6iu11")
+
+[node name="Button5" type="Button" parent="."]
+offset_left = 598.0
+offset_top = 64.0
+offset_right = 728.0
+offset_bottom = 219.0
+text = "equip item"
 
 [connection signal="pressed" from="Button" to="." method="_onAddPressed"]
 [connection signal="pressed" from="Button2" to="." method="_onRemovePressed"]
 [connection signal="pressed" from="Button3" to="." method="_onCheckPressed"]
 [connection signal="pressed" from="Button4" to="." method="_onLengthPressed"]
 [connection signal="item_selected" from="ItemList" to="." method="_on_item_list_item_selected"]
+[connection signal="pressed" from="Button5" to="." method="_on_button_5_pressed"]
