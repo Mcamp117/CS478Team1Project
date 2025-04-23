@@ -5,15 +5,21 @@ extends Node
 @onready var MainMenuScene = preload("res://MainMenu/MainMenu.tscn")
 @onready var PlayerAnim = $"../Player/AnimationPlayer"
 @onready var Hitsound =$"../HitSound"
-@onready var EnemyAnim =$"../Enemy/AnimationPlayer"
+var EnemyAnim 
 @export var EnemyDamageRange = Vector2(0,8)
 @export var enHealth = 20
 @onready var EnemyHealthLabel = $"../CanvasLayer/GridContainer/EnemyHealth/EnemyHealthLabel"
 @onready var PlayerArrow = $"../Player/PlayerArrow"
-@onready var EnemyArrow = $"../Enemy/EnemyArrow"
+var EnemyArrow
 @onready var missLabel = $miss
 var turn = 0
 func _ready() -> void:
+	var Enemy
+	if Player.currentlyFighting == Player.enemyList.Cop:
+		Enemy = load("res://FightScene/CopEnemy.tscn")
+	add_child(Enemy.instantiate())
+	EnemyAnim =$"Enemy/AnimationPlayer"
+	EnemyArrow = $"Enemy/EnemyArrow"
 	missLabel.visible=false
 	PlayerAnim.play("RESET")
 	EnemyAnim.play("RESET")
@@ -29,14 +35,12 @@ func whoGoesFirst() -> int:
 	return randi_range(0,1)
 func damageEnemy() -> void:
 	var damage = randi_range(EnemyDamageRange.x,EnemyDamageRange.y)
-	if damage<1:
-		spawn_miss_label()
+	spawn_label(damage)
 	enHealth-=damage
 	EnemyHealthLabel.text=str(enHealth)
-func damage_player() -> void:
+func damagePlayer() -> void:
 	var damage = randi_range(EnemyDamageRange.x,EnemyDamageRange.y)
-	if damage<1:
-		spawn_miss_label()
+	spawn_label(damage)
 	Player.Health-=damage
 	playerHealth.text=str(Player.Health)
 func EnemyTurn() -> void:
@@ -77,8 +81,16 @@ func check4Victor() -> void:
 	if enHealth<=0:
 		Player.enemiesBeatenList.append(1)
 		get_tree().change_scene_to_packed(overworldScene)
-
-func spawn_miss_label():
+func playHitSound() -> void:
+	$"../HitSound".play()
+func spawn_label(damage):
+	if damage<1:
+		missLabel.text="miss"
+		missLabel.remove_theme_color_override("font_color")
+	else:
+		playHitSound()
+		missLabel.text=str(damage)
+		missLabel.add_theme_color_override("font_color", Color(1, 0.5, 0))
 	missLabel.visible = true
 	#var screen_size = get_viewport().get_size()
 	missLabel.position.x += randi_range(-40, 40)

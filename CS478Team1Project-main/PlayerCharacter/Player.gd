@@ -3,6 +3,12 @@ extends Node
 @onready var Health =100
 @onready var xp =0
 ###Inventory
+enum enemyList  {
+	Cop,
+	Rat,
+	YourFeelings
+}
+@export var currentlyFighting : enemyList
 var weapon
 var max_capacity = 20
 var enemiesBeatenList=[]
