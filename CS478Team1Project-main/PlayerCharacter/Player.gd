@@ -1,5 +1,4 @@
 extends Node
-
 @onready var Health =100
 @onready var xp =0
 ###Inventory
@@ -56,5 +55,11 @@ func selectItem(source):
 			defense=5
 			armor=item
 			armorImage=load("res://GameDesigns/Glasses.png")
+		"Health Pack":
+			canEquip=true
+			Player.itemList.erase("Health Pack")
+			Player.Health+=10
+			if Player.Health>=100:
+				Player.Health=100
 		var notWeapon:
 				canEquip=false

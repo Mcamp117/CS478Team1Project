@@ -100,6 +100,8 @@ func _on_heal_pressed() -> void:
 		if Player.itemList.count("Health Pack") > 0:
 			Player.itemList.erase("Health Pack")
 			Player.Health+=10
+			if Player.Health>=100:
+				Player.Health=100 
 			playerHealth.text=str(Player.Health)
 			checkHealthPack()
 			turn+=1

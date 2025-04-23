@@ -47,18 +47,22 @@ func _on_item_list_item_selected(index: int) -> void:
 
 
 func _on_button_5_pressed() -> void:
-	if indx!=null:
+	if indx != null:
 		Player.selectItem(indx)
 	indx = null
 	if !Player.canEquip:
-		canILabel.visible=true
+		canILabel.visible = true
 		await get_tree().create_timer(.50).timeout
-		canILabel.visible=false
+		canILabel.visible = false
+
+	selectbox.clear()
+	add_items_toList()
+
 	change_equipped_pics()
-	DamageLabel.text = str(int(Player.DamageRange.x))+"-"+str(int(Player.DamageRange.y))
+	DamageLabel.text = str(int(Player.DamageRange.x)) + "-" + str(int(Player.DamageRange.y))
 	DefenseLabel.text = str(Player.defense)
-	$RichTextLabel2.text= str(Player.weapon) + "\n" + str(Player.DamageRange) + "\n" + str(Player.armor) + "\n" + str(Player.defense)
-	pass # Replace with function body.
+	$RichTextLabel2.text = str(Player.weapon) + "\n" + str(Player.DamageRange) + "\n" + str(Player.armor) + "\n" + str(Player.defense)
+
 func add_items_toList()-> void:
 	for i in Player.itemList:
 		match i:
