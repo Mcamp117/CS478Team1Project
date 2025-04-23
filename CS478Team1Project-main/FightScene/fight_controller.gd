@@ -7,6 +7,7 @@ extends Node
 @onready var Hitsound =$"../HitSound"
 @onready var healButton = $"../CanvasLayer/Heal"
 @onready var attackButton = $"../CanvasLayer/Attack"
+@onready var Misssound=$"../MissSound"
 var EnemyAnim 
 var EnemyDamageRange : Vector2
 var enHealth : int
@@ -114,10 +115,13 @@ func check4Victor() -> void:
 		Player.enemiesBeatenList.append(EnemyInstance.EnemyName)
 		get_tree().change_scene_to_packed(overworldScene)
 func playHitSound() -> void:
-	$"../HitSound".play()
+	Hitsound.play()
+func playMissSound()-> void:
+	Misssound.play()
 func spawn_label(damage):
 	if damage<1:
 		missLabel.text="miss"
+		playMissSound()
 		missLabel.remove_theme_color_override("font_color")
 	else:
 		playHitSound()

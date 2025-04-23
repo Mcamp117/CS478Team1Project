@@ -1,7 +1,69 @@
-[gd_scene load_steps=3 format=3 uid="uid://c44h63ohfqgfy"]
+[gd_scene load_steps=13 format=3 uid="uid://c44h63ohfqgfy"]
 
 [ext_resource type="Script" uid="uid://b4wusip5t14gg" path="res://MainMenu/main_menu.gd" id="1_qoqlk"]
 [ext_resource type="Texture2D" uid="uid://daec2v4i7leq4" path="res://Background/placeholder.png" id="1_s1ons"]
+[ext_resource type="Shader" uid="uid://bjcs8direin43" path="res://MainMenu/2dLaser.gdshader" id="3_b76km"]
+[ext_resource type="Texture2D" uid="uid://bch022ksvn036" path="res://GameDesigns/CityCop (1).png" id="4_lbqne"]
+[ext_resource type="Texture2D" uid="uid://dqomi115j0rr0" path="res://GameDesigns/Citizen.png" id="5_3p42x"]
+[ext_resource type="Texture2D" uid="uid://dv62vdxg0rhmy" path="res://GameDesigns/CrazyScientist.png" id="6_3clmd"]
+[ext_resource type="Texture2D" uid="uid://dmixadkijfeur" path="res://GameDesigns/HeroSprite.png" id="7_3clmd"]
+[ext_resource type="AudioStream" uid="uid://duq5mpu277e4p" path="res://MainMenu/Music/4.20.25.1.wav" id="8_bsanu"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lbqne"]
+shader = ExtResource("3_b76km")
+shader_parameter/beams = 667
+shader_parameter/energy = 3.0
+shader_parameter/roughness = 3
+shader_parameter/frequency = 10
+shader_parameter/speed = 1.0
+shader_parameter/thickness = 0.086
+shader_parameter/outline_thickness = 0.1
+shader_parameter/beam_difference = 0.0
+shader_parameter/glow = 0.0
+shader_parameter/outline_glow = 0.0
+shader_parameter/color = Color(0.886114, 0.29734, 0.342737, 1)
+shader_parameter/outline_color = Color(0, 0.459558, 0.435566, 1)
+shader_parameter/progress = 1.0
+shader_parameter/y_offset = 0.0
+shader_parameter/fixed_edge_size = 0.05
+shader_parameter/noise_scale = Vector2(1, 1)
+
+[sub_resource type="Animation" id="Animation_3clmd"]
+resource_name = "RoundABoot"
+length = 8.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Node3D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 4, 7.96667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, -6.28319, 0), Vector3(0, -12.5664, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_bsanu"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Node3D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_kftou"]
+_data = {
+&"RESET": SubResource("Animation_bsanu"),
+&"RoundABoot": SubResource("Animation_3clmd")
+}
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -23,12 +85,15 @@ size_flags_vertical = 3
 [node name="Label" type="Label" parent="MarginContainer"]
 z_index = 1
 layout_mode = 2
+theme_override_constants/outline_size = 15
+theme_override_font_sizes/font_size = 81
 text = "video game
 best video game
 3eam t3am"
 horizontal_alignment = 1
 
 [node name="Placeholder" type="Sprite2D" parent="MarginContainer"]
+z_index = -2
 position = Vector2(759.667, 569)
 scale = Vector2(1.48177, 1.48177)
 texture = ExtResource("1_s1ons")
@@ -51,21 +116,89 @@ text = "start overworld test"
 
 [node name="inventoryTest" type="Button" parent="."]
 layout_mode = 0
-offset_left = 754.0
-offset_top = 366.0
-offset_right = 955.0
-offset_bottom = 489.0
+offset_left = 886.0
+offset_top = 408.0
+offset_right = 1087.0
+offset_bottom = 531.0
 text = "inventory test"
 
 [node name="Pausemenutest" type="Button" parent="."]
 layout_mode = 0
-offset_left = 384.0
-offset_top = 389.0
-offset_right = 585.0
-offset_bottom = 512.0
+offset_left = 116.0
+offset_top = 418.0
+offset_right = 317.0
+offset_bottom = 541.0
 text = "pause menu test"
+
+[node name="ColorRect" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_lbqne")
+layout_mode = 0
+offset_left = -417.0
+offset_top = -41.0
+offset_right = 1582.0
+offset_bottom = 590.0
+mouse_filter = 2
+metadata/_edit_lock_ = true
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+z_index = -1
+texture_filter = 3
+layout_mode = 0
+offset_left = 100.0
+offset_top = -174.0
+offset_right = 636.0
+offset_bottom = 274.0
+scale = Vector2(2, 2)
+mouse_filter = 2
+metadata/_edit_lock_ = true
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
+transparent_bg = true
+
+[node name="Camera3D" type="Camera3D" parent="SubViewportContainer/SubViewport"]
+transform = Transform3D(1, 0, 0, 0, 0.875431, 0.483344, 0, -0.483344, 0.875431, 0, 3.19463, 0)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="SubViewportContainer/SubViewport/Camera3D"]
+libraries = {
+&"": SubResource("AnimationLibrary_kftou")
+}
+
+[node name="Node3D" type="Node3D" parent="SubViewportContainer/SubViewport"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -8)
+
+[node name="Sprite3D" type="Sprite3D" parent="SubViewportContainer/SubViewport/Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3)
+billboard = 1
+texture = ExtResource("4_lbqne")
+
+[node name="Sprite3D2" type="Sprite3D" parent="SubViewportContainer/SubViewport/Node3D"]
+transform = Transform3D(0.246272, 0, 0, 0, 0.246272, 0, 0, 0, 1, 3, 0, 0)
+billboard = 1
+texture = ExtResource("5_3p42x")
+region_enabled = true
+region_rect = Rect2(0, 13.405, 800, 786.595)
+
+[node name="Sprite3D3" type="Sprite3D" parent="SubViewportContainer/SubViewport/Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, 0)
+pixel_size = 0.06
+billboard = 1
+texture_filter = 2
+texture = ExtResource("6_3clmd")
+
+[node name="Sprite3D4" type="Sprite3D" parent="SubViewportContainer/SubViewport/Node3D"]
+transform = Transform3D(1, 4.93483e-05, -4.75855e-05, -4.93483e-05, 1, 5.39982e-05, 4.75855e-05, -5.39981e-05, 1, 2.38419e-07, 0, -2.70647)
+pixel_size = 0.005
+billboard = 1
+texture_filter = 2
+texture = ExtResource("7_3clmd")
+
+[node name="4_20__25_1" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_bsanu")
+autoplay = true
 
 [connection signal="pressed" from="fightTest" to="." method="_on_fight_test_pressed"]
 [connection signal="pressed" from="overWorldTest" to="." method="_on_over_world_test_pressed"]
 [connection signal="pressed" from="inventoryTest" to="." method="_on_inventory_test_pressed"]
 [connection signal="pressed" from="Pausemenutest" to="." method="_on_pausemenutest_pressed"]
+[connection signal="animation_finished" from="SubViewportContainer/SubViewport/Camera3D/AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
+[connection signal="finished" from="4_20__25_1" to="." method="_on__20__25_1_finished"]

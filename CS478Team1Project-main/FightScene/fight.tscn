@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://cjh07464np57e"]
+[gd_scene load_steps=26 format=3 uid="uid://cjh07464np57e"]
 
 [ext_resource type="ArrayMesh" uid="uid://3khf5m6jy015" path="res://FightScene/Models/fightGround.obj" id="1_3mnov"]
 [ext_resource type="Script" uid="uid://3e1fe85cktb5" path="res://FightScene/cameraRotate.gd" id="2_m6wut"]
@@ -10,6 +10,7 @@
 [ext_resource type="Shader" uid="uid://llecpgurupai" path="res://FightScene/2dHeatHaze.gdshader" id="8_1u4tr"]
 [ext_resource type="Script" uid="uid://bgrr7s7das0aa" path="res://FightScene/fight_controller.gd" id="9_hcub5"]
 [ext_resource type="AudioStream" uid="uid://b3kc2nph58ujh" path="res://FightScene/FightSounds/HitSound.wav" id="10_1b6oj"]
+[ext_resource type="AudioStream" uid="uid://bqlyi7erfxft6" path="res://FightScene/FightSounds/MissSound.wav" id="11_3677d"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3mnov"]
 albedo_color = Color(0.353128, 0.266219, 0.0845254, 0.647059)
@@ -152,6 +153,10 @@ shader_parameter/scale = 0.01
 streams_count = 1
 stream_0/stream = ExtResource("10_1b6oj")
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_am5y6"]
+streams_count = 1
+stream_0/stream = ExtResource("11_3677d")
+
 [node name="Node3D" type="Node3D"]
 
 [node name="FightGround" type="MeshInstance3D" parent="."]
@@ -179,6 +184,8 @@ surface_material_override/0 = SubResource("ShaderMaterial_562p4")
 [node name="Player" type="Sprite3D" parent="."]
 transform = Transform3D(0.224034, 0, 0, 0, 0.202978, 0, 0, 0, 0.0641439, -1, 0.541724, 0)
 texture = ExtResource("4_c5luh")
+region_enabled = true
+region_rect = Rect2(0, 7.08999, 400, 392.91)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Player"]
 libraries = {
@@ -302,6 +309,10 @@ position = Vector2(595, 340)
 stream = SubResource("AudioStreamRandomizer_1b6oj")
 volume_db = 3.0
 attenuation = 1e-05
+
+[node name="MissSound" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(595, 340)
+stream = SubResource("AudioStreamRandomizer_am5y6")
 
 [connection signal="finished" from="AudioStreamPlayer3D" to="Node3D" method="_on_audio_stream_player_3d_finished"]
 [connection signal="pressed" from="CanvasLayer/takeDamage" to="FightController" method="_on_button_pressed"]
