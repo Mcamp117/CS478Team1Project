@@ -204,6 +204,7 @@ texture = ExtResource("1_ncf1h")
 script = ExtResource("2_ukna5")
 EnemyHealth = 30
 EnemyDamage = Vector2(0, 8)
+EnemyName = "Cop"
 
 [node name="EnemyArrow" type="Sprite3D" parent="."]
 transform = Transform3D(3.824, 0, 0, 0, 3.824, 0, 0, 0, 3.824, 0, 1.94, 0)

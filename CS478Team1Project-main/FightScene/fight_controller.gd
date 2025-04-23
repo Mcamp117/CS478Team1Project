@@ -11,6 +11,7 @@ var EnemyAnim
 var EnemyDamageRange : Vector2
 var enHealth : int
 var Enemy
+var EnemyInstance
 @onready var EnemyHealthLabel = $"../CanvasLayer/GridContainer/EnemyHealth/EnemyHealthLabel"
 @onready var PlayerArrow = $"../Player/PlayerArrow"
 var EnemyArrow
@@ -22,7 +23,8 @@ func _ready() -> void:
 		Enemy = load("res://FightScene/CopEnemy.tscn")
 	if Player.currentlyFighting == Player.enemyList.Oppenheimer:
 		Enemy = load("res://FightScene/OppenheimerEnemy.tscn")
-	add_child(Enemy.instantiate())
+	EnemyInstance=Enemy.instantiate()
+	add_child(EnemyInstance)
 	enHealth = $"Enemy".EnemyHealth
 	EnemyDamageRange = $"Enemy".EnemyDamage
 	EnemyAnim =$"Enemy/AnimationPlayer"
@@ -107,7 +109,7 @@ func check4Victor() -> void:
 	if Player.Health<=0:
 		get_tree().change_scene_to_packed(MainMenuScene)
 	if enHealth<=0:
-		Player.enemiesBeatenList.append(Enemy)
+		Player.enemiesBeatenList.append(EnemyInstance.EnemyName)
 		get_tree().change_scene_to_packed(overworldScene)
 func playHitSound() -> void:
 	$"../HitSound".play()
