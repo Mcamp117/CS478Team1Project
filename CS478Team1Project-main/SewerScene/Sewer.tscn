@@ -1,0 +1,27 @@
+[gd_scene load_steps=3 format=3 uid="uid://by4p54l0stl85"]
+
+[ext_resource type="PackedScene" uid="uid://bm8qx3f3yey3w" path="res://OverWorld/overWorldChar.tscn" id="1_hncqj"]
+[ext_resource type="PackedScene" uid="uid://dy3ngjo0bby53" path="res://PauseMenu/pause_menu.tscn" id="2_4x4he"]
+
+[node name="Sewer" type="Node2D"]
+
+[node name="TileMap" type="TileMap" parent="."]
+format = 2
+
+[node name="Player" parent="." instance=ExtResource("1_hncqj")]
+position = Vector2(0, 15)
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="Player/Camera2D"]
+
+[node name="pauseMenu" parent="Player/Camera2D/CanvasLayer" instance=ExtResource("2_4x4he")]
+visible = false
+
+[node name="Label" type="Label" parent="Player"]
+offset_left = -524.0
+offset_top = -312.0
+offset_right = -484.0
+offset_bottom = -289.0
+theme_override_font_sizes/font_size = 66
+text = "100"
