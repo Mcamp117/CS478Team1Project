@@ -6,6 +6,13 @@ func _ready() -> void:
 	if Player.enemiesBeatenList.count("Cop")==1:
 		self.queue_free()
 func _on_area_2d_body_entered(body: Node2D) -> void:
+	if Dialogic.current_timeline != null:
+		return
+
+	# Start fight dialog timeline
+	Dialogic.start("FightTimeline")
+	get_viewport().set_input_as_handled()
+	
 	var fightTestScene = load("res://FightScene/fight.tscn")
 	hitPlayer.emit()
 	Player.currentlyFighting=Player.enemyList.Cop#Oppenheimer

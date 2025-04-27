@@ -14,6 +14,11 @@ func _on_inventory_test_pressed() -> void:
 
 func _on_over_world_test_pressed() -> void:
 	get_tree().change_scene_to_packed(overWorldTestScene)
+	if Dialogic.current_timeline != null:
+		return
+
+	# Start fight dialog timeline
+	Dialogic.start("IntroTimeline")
 	pass # Replace with function body.
 
 
