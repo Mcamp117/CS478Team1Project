@@ -3,7 +3,7 @@ extends Control
 var fightTestScene = preload("res://FightScene/fight.tscn")
 var inventoryTest = preload("res://PlayerCharacter/inventory test scene.tscn")
 var overWorldTestScene = preload("res://OverWorld/world.tscn")
-var pauseMenuTestScene = preload("res://PauseMenu/pause_menu.tscn")
+var sewerTestScene = preload("res://SewerScene/Sewer.tscn")
 
 func _ready() -> void:
 	$SubViewportContainer/SubViewport/Camera3D/AnimationPlayer.play("RoundABoot")
@@ -23,7 +23,7 @@ func _on_fight_test_pressed() -> void:
 
 
 func _on_pausemenutest_pressed() -> void:
-	get_tree().change_scene_to_packed(pauseMenuTestScene)
+	get_tree().change_scene_to_packed(sewerTestScene)
 	pass # Replace with function body.
 
 
