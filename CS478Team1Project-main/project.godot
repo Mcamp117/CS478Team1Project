@@ -37,7 +37,6 @@ directories/dtl_directory={
 "BarrierTimeline": "res://Dialogue/BarrierTimeline.dtl",
 "FightTimeline": "res://Dialogue/FightTimeline.dtl",
 "IntroTimeline": "res://Dialogue/IntroTimeline.dtl",
-"PostFightTimeline": "res://Dialogue/PostFightTimeline.dtl",
 "ScientistTimeline": "res://Dialogue/ScientistTimeline.dtl"
 }
 extensions_folder="res://addons/dialogic_additions"

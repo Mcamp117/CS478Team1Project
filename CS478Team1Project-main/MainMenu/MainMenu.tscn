@@ -100,7 +100,7 @@ offset_left = 886.0
 offset_top = 408.0
 offset_right = 1087.0
 offset_bottom = 531.0
-text = "inventory test"
+text = "Lab Scene test"
 
 [node name="Pausemenutest" type="Button" parent="."]
 layout_mode = 0

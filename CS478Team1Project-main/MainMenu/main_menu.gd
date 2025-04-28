@@ -4,11 +4,12 @@ var fightTestScene = preload("res://FightScene/fight.tscn")
 var inventoryTest = preload("res://PlayerCharacter/inventory test scene.tscn")
 var overWorldTestScene = preload("res://OverWorld/world.tscn")
 var sewerTestScene = preload("res://SewerScene/Sewer.tscn")
+var labTestScene = preload("res://LabScene/Lab.tscn")
 
 func _ready() -> void:
 	$SubViewportContainer/SubViewport/Camera3D/AnimationPlayer.play("RoundABoot")
 func _on_inventory_test_pressed() -> void:
-	get_tree().change_scene_to_packed(inventoryTest)
+	get_tree().change_scene_to_packed(labTestScene)
 	pass # Replace with function body.
 
 
