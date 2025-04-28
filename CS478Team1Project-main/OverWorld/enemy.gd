@@ -1,25 +1,29 @@
 extends CharacterBody2D
-#@onready var player = get_node("root/OverWorld/Player")
+
 signal hitPlayer
 
+@onready var fightTestScene = load("res://FightScene/fight.tscn")
+
 func _ready() -> void:
-	if Player.enemiesBeatenList.count("Cop")==1:
+	if Player.enemiesBeatenList.count("Cop") == 1:
 		self.queue_free()
+
 func _on_area_2d_body_entered(body: Node2D) -> void:
+	# Prevent starting the fight if a dialogue is already running
 	if Dialogic.current_timeline != null:
 		return
-
-	# Start fight dialog timeline
+		
+	# Play the dialogue
 	Dialogic.start("FightTimeline")
 	get_viewport().set_input_as_handled()
 	
-	var fightTestScene = load("res://FightScene/fight.tscn")
-	hitPlayer.emit()
-	Player.currentlyFighting=Player.enemyList.Cop#Oppenheimer
-	#changing scenes during physics action is dangerous
-	if fightTestScene:
-		# Change the scene after ensuring the PackedScene is valid
-		get_tree().call_deferred("change_scene_to_packed", fightTestScene)
-	else:
-		print("Error: The scene is not valid.")
+	# Wait until dialogue finishes
+	await Dialogic.timeline_ended
 	
+	# After dialogue ends, start the fight
+	if fightTestScene:
+		hitPlayer.emit()
+		Player.currentlyFighting = Player.enemyList.Cop
+		get_tree().change_scene_to_packed(fightTestScene)
+	else:
+		print("Error: Fight scene is not valid.")
