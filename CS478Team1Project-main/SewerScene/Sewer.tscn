@@ -1,9 +1,15 @@
-[gd_scene load_steps=7 format=3 uid="uid://by4p54l0stl85"]
+[gd_scene load_steps=13 format=3 uid="uid://by4p54l0stl85"]
 
 [ext_resource type="Texture2D" uid="uid://bai1u6v2k0o4u" path="res://OverWorld/OverWorldSprites/SewerSet.png" id="1_4x4he"]
 [ext_resource type="PackedScene" uid="uid://bm8qx3f3yey3w" path="res://OverWorld/overWorldChar.tscn" id="1_hncqj"]
 [ext_resource type="PackedScene" uid="uid://dy3ngjo0bby53" path="res://PauseMenu/pause_menu.tscn" id="2_4x4he"]
 [ext_resource type="Script" uid="uid://dsj6defcjkuvr" path="res://OverWorld/SideScrollPlayer.gd" id="3_gwon1"]
+[ext_resource type="PackedScene" uid="uid://dilrjuousk4n0" path="res://SewerScene/Ein.tscn" id="5_5hu0v"]
+[ext_resource type="PackedScene" uid="uid://ct86u10ert4i0" path="res://SewerScene/Newt.tscn" id="6_iuf6h"]
+[ext_resource type="PackedScene" uid="uid://bblcdnsquelxt" path="res://SewerScene/Heisen.tscn" id="7_8bo11"]
+[ext_resource type="PackedScene" uid="uid://bj5u00bn1j1bc" path="res://SewerScene/Oppen.tscn" id="8_1iucv"]
+[ext_resource type="PackedScene" uid="uid://b33avaksnt8kt" path="res://SewerScene/Thorn.tscn" id="9_iuf6h"]
+[ext_resource type="PackedScene" uid="uid://vmcnklasad1l" path="res://OverWorld/Exit.tscn" id="10_8bo11"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_gwon1"]
 texture = ExtResource("1_4x4he")
@@ -193,3 +199,21 @@ offset_right = -484.0
 offset_bottom = -289.0
 theme_override_font_sizes/font_size = 66
 text = "100"
+
+[node name="Ein" parent="." instance=ExtResource("5_5hu0v")]
+position = Vector2(332, 41)
+
+[node name="Newt" parent="." instance=ExtResource("6_iuf6h")]
+position = Vector2(710, 39)
+
+[node name="Heisen" parent="." instance=ExtResource("7_8bo11")]
+position = Vector2(448, 42)
+
+[node name="Oppen" parent="." instance=ExtResource("8_1iucv")]
+position = Vector2(613, 35)
+
+[node name="Thorn" parent="." instance=ExtResource("9_iuf6h")]
+position = Vector2(878, 41)
+
+[node name="Exit" parent="." instance=ExtResource("10_8bo11")]
+position = Vector2(-49, 26)

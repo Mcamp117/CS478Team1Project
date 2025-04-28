@@ -1,0 +1,45 @@
+[gd_scene load_steps=6 format=3 uid="uid://dilrjuousk4n0"]
+
+[ext_resource type="Texture2D" uid="uid://beqlltl6s1pd0" path="res://GameDesigns/Einstein.png" id="1_0rui3"]
+[ext_resource type="Script" uid="uid://cle88tobljuui" path="res://SewerScene/ein.gd" id="1_2u37j"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_2u37j"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_0rui3")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_753nl"]
+size = Vector2(20, 19)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_21h03"]
+size = Vector2(24.2886, 20.9726)
+
+[node name="Ein" type="CharacterBody2D"]
+script = ExtResource("1_2u37j")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+position = Vector2(2.0625, -3.50001)
+scale = Vector2(0.683594, 0.71875)
+sprite_frames = SubResource("SpriteFrames_2u37j")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(2, -2.5)
+shape = SubResource("RectangleShape2D_753nl")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0.749993, -3.99999)
+scale = Vector2(0.967532, 1.04899)
+shape = SubResource("RectangleShape2D_21h03")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

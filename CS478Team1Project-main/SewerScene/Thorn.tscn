@@ -1,0 +1,45 @@
+[gd_scene load_steps=6 format=3 uid="uid://b33avaksnt8kt"]
+
+[ext_resource type="Script" uid="uid://csmh8lygqdaaa" path="res://SewerScene/thorn.gd" id="1_4m0ug"]
+[ext_resource type="Texture2D" uid="uid://bncijquhxmfs8" path="res://GameDesigns/Thorn.png" id="2_4m0ug"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_tkgcc"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_4m0ug")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f4f8v"]
+size = Vector2(18, 24)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2ca60"]
+size = Vector2(18.6041, 22.8791)
+
+[node name="Thorn" type="CharacterBody2D"]
+script = ExtResource("1_4m0ug")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+position = Vector2(9.53674e-07, -4)
+scale = Vector2(1.21875, 1.35156)
+sprite_frames = SubResource("SpriteFrames_tkgcc")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -4)
+shape = SubResource("RectangleShape2D_f4f8v")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-1.0842e-19, -4)
+scale = Vector2(0.967532, 1.04899)
+shape = SubResource("RectangleShape2D_2ca60")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
