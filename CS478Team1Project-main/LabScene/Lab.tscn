@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://dy3ngjo0bby53" path="res://PauseMenu/pause_menu.tscn" id="2_q5sy0"]
 [ext_resource type="Script" uid="uid://dsj6defcjkuvr" path="res://OverWorld/SideScrollPlayer.gd" id="2_sbb5e"]
 [ext_resource type="PackedScene" uid="uid://bgv5v0opddttt" path="res://LabScene/Sci.tscn" id="5_6shac"]
-[ext_resource type="PackedScene" uid="uid://vmcnklasad1l" path="res://OverWorld/Exit.tscn" id="6_c6tce"]
+[ext_resource type="AudioStream" uid="uid://cdp75cyfmy0js" path="res://LabScene/Labs.wav" id="6_c6tce"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6shac"]
 texture = ExtResource("1_sbb5e")
@@ -187,20 +187,17 @@ speed = 70.0
 [node name="pauseMenu" parent="Player/Camera2D/CanvasLayer" instance=ExtResource("2_q5sy0")]
 visible = false
 
-[node name="Label" type="Label" parent="Player"]
+[node name="Label" type="Label" parent="Player/Camera2D"]
 offset_left = -524.0
 offset_top = -312.0
-offset_right = -484.0
-offset_bottom = -289.0
+offset_right = -411.0
+offset_bottom = -221.0
 theme_override_font_sizes/font_size = 66
 text = "100"
 
 [node name="Sci" parent="." instance=ExtResource("5_6shac")]
 position = Vector2(544, 37)
 collision_mask = 3
-
-[node name="Exit" parent="." instance=ExtResource("6_c6tce")]
-position = Vector2(-70, 25)
 
 [node name="LabExit" type="Area2D" parent="."]
 collision_layer = 4
@@ -210,4 +207,10 @@ collision_mask = 3
 position = Vector2(-70, 25)
 shape = SubResource("RectangleShape2D_c6tce")
 
+[node name="music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_c6tce")
+volume_db = -5.0
+autoplay = true
+
 [connection signal="body_entered" from="LabExit" to="Player" method="_on_lab_exit_body_entered"]
+[connection signal="finished" from="music" to="Player" method="_on_music_finished"]

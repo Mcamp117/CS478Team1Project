@@ -1,13 +1,13 @@
 extends Node
 @export var numberOfEnemies = 1
 @onready var playerHealth = $"../CanvasLayer/GridContainer/PlayerHealth/PlayerHealthLabel"
-@onready var overworldScene = preload("res://OverWorld/world.tscn")
 @onready var MainMenuScene = preload("res://MainMenu/MainMenu.tscn")
 @onready var PlayerAnim = $"../Player/AnimationPlayer"
 @onready var Hitsound =$"../HitSound"
 @onready var healButton = $"../CanvasLayer/Heal"
 @onready var attackButton = $"../CanvasLayer/Attack"
 @onready var Misssound=$"../MissSound"
+@export var ReturnScene = load("res://OverWorld/world.tscn")
 var EnemyAnim 
 var EnemyDamageRange : Vector2
 var enHealth : int
@@ -19,11 +19,56 @@ var EnemyArrow
 @onready var missLabel = $miss
 var turn = 0
 func _ready() -> void:
-	
+	print(str(Player.currentlyFighting))
 	if Player.currentlyFighting == Player.enemyList.Cop:
 		Enemy = load("res://FightScene/CopEnemy.tscn")
-	if Player.currentlyFighting == Player.enemyList.Oppenheimer:
+		ReturnScene = load("res://OverWorld/world.tscn")
+		$"../FightGround".material_override.albedo_color = Color.hex(1514411685)
+		$"../WorldEnvironment".environment.sky.sky_material.sky_top_color = Color(0.729, 0.219, 0.169)
+		$"../WorldEnvironment".environment.sky.sky_material.sky_horizon_color= Color(0.341, 0.149, 0.059)
+		$"../WorldEnvironment".environment.sky.sky_material.ground_bottom_color = Color(0.2, 0.169, 0.133)
+		$"../WorldEnvironment".environment.sky.sky_material.ground_horizon_color = Color(0.341, 0.149, 0.059)
+		$"../AudioStreamPlayer3D".play()
+	elif Player.currentlyFighting == Player.enemyList.Oppenheimer:
 		Enemy = load("res://FightScene/OppenheimerEnemy.tscn")
+		ReturnScene = load("res://SewerScene/Sewer.tscn")
+		$"../FightGround".material_override.albedo_color = Color.hex(319554213)
+		$"../WorldEnvironment".environment.sky.sky_material.sky_top_color = Color(0.184, 0.259, 0.554)
+		$"../WorldEnvironment".environment.sky.sky_material.sky_horizon_color= Color(0.131, 0.404, 0.246)
+		$"../WorldEnvironment".environment.sky.sky_material.ground_bottom_color = Color(0.645, 0.952, 0.36)
+		$"../WorldEnvironment".environment.sky.sky_material.ground_horizon_color = Color(0.15, 0.241, 0.122)
+		$"../Onlyfight".play()
+		#$"../Node3D/MeshInstance3D".surface_material_override.shader_parameter.max_shift= .2
+	elif Player.currentlyFighting == Player.enemyList.Heisenberg:
+		Enemy = load("res://FightScene/HeisenbergEnemy.tscn")
+		ReturnScene = load("res://SewerScene/Sewer.tscn")
+		$"../FightGround".material_override.albedo_color = Color.hex(319554213)
+		$"../WorldEnvironment".environment.sky.sky_material.sky_top_color = Color(0.184, 0.259, 0.554)
+		$"../WorldEnvironment".environment.sky.sky_material.sky_horizon_color= Color(0.131, 0.404, 0.246)
+		$"../WorldEnvironment".environment.sky.sky_material.ground_bottom_color = Color(0.645, 0.952, 0.36)
+		$"../WorldEnvironment".environment.sky.sky_material.ground_horizon_color = Color(0.15, 0.241, 0.122)
+		$"../Onlyfight".play()
+		#$"../Node3D/MeshInstance3D".surface_material_override.shader_parameter.max_shift= .2
+	elif Player.currentlyFighting == Player.enemyList.Newton:
+		Enemy = load("res://FightScene/NewtonEnemy.tscn")
+		ReturnScene = load("res://SewerScene/Sewer.tscn")
+		$"../FightGround".material_override.albedo_color = Color.hex(319554213)
+		$"../WorldEnvironment".environment.sky.sky_material.sky_top_color = Color(0.184, 0.259, 0.554)
+		$"../WorldEnvironment".environment.sky.sky_material.sky_horizon_color= Color(0.131, 0.404, 0.246)
+		$"../WorldEnvironment".environment.sky.sky_material.ground_bottom_color = Color(0.645, 0.952, 0.36)
+		$"../WorldEnvironment".environment.sky.sky_material.ground_horizon_color = Color(0.15, 0.241, 0.122)
+		$"../Onlyfight".play()
+		#$"../Node3D/MeshInstance3D".surface_material_override.shader_parameter.max_shift= .2
+	elif Player.currentlyFighting == Player.enemyList.Einstein:
+		Enemy = load("res://FightScene/EinsteinEnemy.tscn")
+		ReturnScene = load("res://SewerScene/Sewer.tscn")
+		$"../FightGround".material_override.albedo_color = Color.hex(319554213)
+		$"../WorldEnvironment".environment.sky.sky_material.sky_top_color = Color(0.184, 0.259, 0.554)
+		$"../WorldEnvironment".environment.sky.sky_material.sky_horizon_color= Color(0.131, 0.404, 0.246)
+		$"../WorldEnvironment".environment.sky.sky_material.ground_bottom_color = Color(0.645, 0.952, 0.36)
+		$"../WorldEnvironment".environment.sky.sky_material.ground_horizon_color = Color(0.15, 0.241, 0.122)
+		$"../Onlyfight".play()
+		#$"../Node3D/MeshInstance3D".surface_material_override.shader_parameter.max_shift= .2
 	EnemyInstance=Enemy.instantiate()
 	add_child(EnemyInstance)
 	enHealth = $"Enemy".EnemyHealth
@@ -80,7 +125,7 @@ func _on_button_pressed() -> void: #take damage
 	pass # Replace with function body.
 func _on_button_2_pressed() -> void: #go back home debug
 	Player.location=Vector2(0,15)
-	get_tree().change_scene_to_packed(overworldScene)
+	get_tree().change_scene_to_packed(ReturnScene)
 	pass # Replace with function body.
 func _on_button_3_pressed() -> void:#attack
 	if turn%2 ==0:
@@ -115,7 +160,8 @@ func check4Victor() -> void:
 		get_tree().change_scene_to_packed(MainMenuScene)
 	if enHealth<=0:
 		Player.enemiesBeatenList.append(EnemyInstance.EnemyName)
-		get_tree().change_scene_to_packed(overworldScene)
+		print(str(EnemyInstance.EnemyName))
+		get_tree().change_scene_to_packed(ReturnScene)
 func playHitSound() -> void:
 	Hitsound.play()
 func playMissSound()-> void:

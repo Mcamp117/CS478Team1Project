@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://cjh07464np57e"]
+[gd_scene load_steps=27 format=3 uid="uid://cjh07464np57e"]
 
 [ext_resource type="ArrayMesh" uid="uid://3khf5m6jy015" path="res://FightScene/Models/fightGround.obj" id="1_3mnov"]
 [ext_resource type="Script" uid="uid://3e1fe85cktb5" path="res://FightScene/cameraRotate.gd" id="2_m6wut"]
@@ -11,14 +11,15 @@
 [ext_resource type="Script" uid="uid://bgrr7s7das0aa" path="res://FightScene/fight_controller.gd" id="9_hcub5"]
 [ext_resource type="AudioStream" uid="uid://b3kc2nph58ujh" path="res://FightScene/FightSounds/HitSound.wav" id="10_1b6oj"]
 [ext_resource type="AudioStream" uid="uid://bqlyi7erfxft6" path="res://FightScene/FightSounds/MissSound.wav" id="11_3677d"]
+[ext_resource type="AudioStream" uid="uid://4qgv1ly8du7j" path="res://SewerScene/ONLYFIGHT.wav" id="12_am5y6"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3mnov"]
-albedo_color = Color(0.353128, 0.266219, 0.0845254, 0.647059)
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_3mnov"]
-sky_top_color = Color(0.728579, 0.218728, 0.16943, 1)
-sky_horizon_color = Color(0.341222, 0.149226, 0.0591635, 1)
-ground_horizon_color = Color(0.341176, 0.14902, 0.0588235, 1)
+sky_top_color = Color(0.184282, 0.259082, 0.553628, 1)
+sky_horizon_color = Color(0.131371, 0.404324, 0.246417, 1)
+ground_bottom_color = Color(0.644911, 0.95157, 0.359685, 1)
+ground_horizon_color = Color(0.149624, 0.240633, 0.12241, 1)
 ground_curve = 1.19428
 
 [sub_resource type="Sky" id="Sky_m6wut"]
@@ -210,8 +211,7 @@ texture = ExtResource("6_3677d")
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("5_34m47")
-volume_db = -9.0
-autoplay = true
+volume_db = -12.0
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -314,8 +314,13 @@ attenuation = 1e-05
 position = Vector2(595, 340)
 stream = SubResource("AudioStreamRandomizer_am5y6")
 
+[node name="Onlyfight" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("12_am5y6")
+volume_db = -3.0
+
 [connection signal="finished" from="AudioStreamPlayer3D" to="Node3D" method="_on_audio_stream_player_3d_finished"]
 [connection signal="pressed" from="CanvasLayer/takeDamage" to="FightController" method="_on_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/main menu" to="FightController" method="_on_button_2_pressed"]
 [connection signal="pressed" from="CanvasLayer/Attack" to="FightController" method="_on_button_3_pressed"]
 [connection signal="pressed" from="CanvasLayer/Heal" to="FightController" method="_on_heal_pressed"]
+[connection signal="finished" from="Onlyfight" to="Node3D" method="_on_onlyfight_finished"]

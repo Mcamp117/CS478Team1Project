@@ -3,7 +3,7 @@ extends CharacterBody2D
 signal hitPlayer
 
 func _ready() -> void:
-	if Player.enemiesBeatenList.count("Heisenburg")==1:
+	if Player.enemiesBeatenList.count("Heisenberg")==1:
 		self.queue_free()
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	print("2d entered")
@@ -16,7 +16,7 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 	
 	var fightTestScene = load("res://FightScene/fight.tscn")
 	hitPlayer.emit()
-	Player.currentlyFighting=Player.enemyList.Oppenheimer#Oppenheimer
+	Player.currentlyFighting=Player.enemyList.Heisenberg#Oppenheimer
 	#changing scenes during physics action is dangerous
 	if fightTestScene:
 		# Change the scene after ensuring the PackedScene is valid

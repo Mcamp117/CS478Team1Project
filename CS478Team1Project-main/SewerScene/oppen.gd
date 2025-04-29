@@ -15,6 +15,7 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 	get_viewport().set_input_as_handled()
 	
 	var fightTestScene = load("res://FightScene/fight.tscn")
+	
 	hitPlayer.emit()
 	Player.currentlyFighting=Player.enemyList.Oppenheimer#Oppenheimer
 	#changing scenes during physics action is dangerous

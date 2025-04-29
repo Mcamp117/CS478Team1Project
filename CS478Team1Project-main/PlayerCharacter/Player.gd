@@ -4,11 +4,13 @@ extends Node
 ###Inventory
 enum enemyList  {
 	Cop,
-	Rat,
-	YourFeelings,
-	Oppenheimer
+	Heisenberg,
+	Newton,
+	Oppenheimer,
+	Einstein
 }
 var location: Vector2
+var matryoskaLocation: Vector2 = Vector2(0,30)
 @export var currentlyFighting : enemyList
 var armor
 var defense = 0

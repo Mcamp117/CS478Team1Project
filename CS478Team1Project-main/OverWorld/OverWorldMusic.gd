@@ -5,4 +5,4 @@ func _ready() -> void:
 
 func _on_owrodl_finished() -> void:
 	$Owrodl.play()
-	pass # Replace with function body.
+pass # Replace with function body.

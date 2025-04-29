@@ -1,7 +1,6 @@
 extends CharacterBody2D
 #@onready var player = get_node("root/OverWorld/Player")
 signal hitPlayer
-
 func _ready() -> void:
 	if Player.enemiesBeatenList.count("Einstein")==1:
 		self.queue_free()
@@ -16,7 +15,7 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 	
 	var fightTestScene = load("res://FightScene/fight.tscn")
 	hitPlayer.emit()
-	Player.currentlyFighting=Player.enemyList.Oppenheimer#Oppenheimer
+	Player.currentlyFighting=Player.enemyList.Einstein#Oppenheimer
 	#changing scenes during physics action is dangerous
 	if fightTestScene:
 		# Change the scene after ensuring the PackedScene is valid

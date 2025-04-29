@@ -16,7 +16,7 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 	
 	var fightTestScene = load("res://FightScene/fight.tscn")
 	hitPlayer.emit()
-	Player.currentlyFighting=Player.enemyList.Oppenheimer#Oppenheimer
+	Player.currentlyFighting=Player.enemyList.Newton#Oppenheimer
 	#changing scenes during physics action is dangerous
 	if fightTestScene:
 		# Change the scene after ensuring the PackedScene is valid

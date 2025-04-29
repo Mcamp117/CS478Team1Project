@@ -1,0 +1,135 @@
+[gd_scene load_steps=7 format=3 uid="uid://dg1et1mpew8d6"]
+
+[ext_resource type="Texture2D" uid="uid://beqlltl6s1pd0" path="res://GameDesigns/Einstein.png" id="1_xtd6e"]
+[ext_resource type="Script" uid="uid://ddnauvh8jq6ea" path="res://FightScene/EnemyPassthrough.gd" id="2_jickn"]
+[ext_resource type="Texture2D" uid="uid://vovfqfu46v55" path="res://FightScene/Sprites/red arrow.png" id="3_d361o"]
+
+[sub_resource type="Animation" id="Animation_am5y6"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.971907, 0.671053, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.429, 0.389, 0.122)]
+}
+
+[sub_resource type="Animation" id="Animation_3677d"]
+resource_name = "enemy_attack"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.933333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0.971907, 0.671053, 0), Vector3(1.62659, 0.671053, 0), Vector3(0.971907, 0.671053, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.633333, 0.8, 0.933333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, -1.01432), Vector3(0, 0, 0.689771), Vector3(0, 0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.0334333, 0.4, 0.933333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0.429, 0.389, 0.122), Vector3(0.429, 0.389, 0.122), Vector3(0.429, 0.389, 0.122), Vector3(0.914238, 0.307794, 0.122), Vector3(0.429, 0.389, 0.122)]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.733333),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"dostuff"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_te0ic"]
+_data = {
+&"RESET": SubResource("Animation_am5y6"),
+&"enemy_attack": SubResource("Animation_3677d")
+}
+
+[node name="Enemy" type="Sprite3D"]
+transform = Transform3D(0.429, 0, 0, 0, 0.389, 0, 0, 0, 0.122, 0.971907, 0.671053, 0)
+pixel_size = 0.05
+texture_filter = 2
+texture = ExtResource("1_xtd6e")
+script = ExtResource("2_jickn")
+EnemyHealth = 20
+EnemyDamage = Vector2(0, 10)
+EnemyName = "Einstein"
+
+[node name="EnemyArrow" type="Sprite3D" parent="."]
+transform = Transform3D(3.824, 0, 0, 0, 3.824, 0, 0, 0, 3.824, 0, 1.94, 0)
+flip_h = true
+modulate = Color(0, 0, 0, 1)
+billboard = 1
+shaded = true
+texture_filter = 2
+texture = ExtResource("3_d361o")
+
+[node name="Shadow" type="Sprite3D" parent="EnemyArrow"]
+offset = Vector2(0.31, 2.155)
+flip_h = true
+billboard = 1
+shaded = true
+texture_filter = 2
+texture = ExtResource("3_d361o")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_te0ic")
+}

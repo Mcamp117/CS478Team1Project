@@ -2,6 +2,7 @@ extends CharacterBody2D
 @export var speed: float = 10
 @onready var characterSprite = $AnimatedSprite2D
 @onready var Inventory=preload("res://PlayerCharacter/inventory test scene.tscn")
+@onready var camera = $Camera2D
 var inventory
 func _ready() -> void:
 	inventory = Inventory.instantiate()
@@ -26,7 +27,12 @@ func _input(event: InputEvent) -> void:
 		else:
 			inventory.queue_free()
 			inventory = Inventory.instantiate()
-
+	if event is InputEventMouseButton:
+		if event.button_index == MOUSE_BUTTON_WHEEL_UP and event.pressed:
+			camera.zoom+= Vector2(1,1)
+		elif event.button_index == MouseButton.MOUSE_BUTTON_WHEEL_DOWN and event.pressed:
+			if camera.zoom >Vector2(0,0):
+				camera.zoom-= Vector2(1,1)
 
 func _on_over_world_tree_exiting() -> void:
 	Player.location=self.position
@@ -34,6 +40,7 @@ func _on_over_world_tree_exiting() -> void:
 
 
 func _on_over_world_tree_entered() -> void:
+	Player.matryoskaLocation = Vector2(0,30)
 	self.position=Player.location
 	pass # Replace with function body.
 
