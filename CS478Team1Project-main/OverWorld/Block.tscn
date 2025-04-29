@@ -1,10 +1,13 @@
-[gd_scene load_steps=4 format=3 uid="uid://dxf6wh3d7ofpm"]
+[gd_scene load_steps=5 format=3 uid="uid://dxf6wh3d7ofpm"]
 
 [ext_resource type="Texture2D" uid="uid://bch022ksvn036" path="res://GameDesigns/CityCop (1).png" id="1_73vfi"]
 [ext_resource type="Script" uid="uid://bivfmrji2raju" path="res://OverWorld/block.gd" id="1_fpf3o"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_73vfi"]
 size = Vector2(45, 61)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fpf3o"]
+size = Vector2(25, 60)
 
 [node name="CharacterBody2D" type="CharacterBody2D"]
 collision_layer = 24
@@ -32,5 +35,9 @@ collision_mask = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(-9.5, -1.5)
 shape = SubResource("RectangleShape2D_73vfi")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, -1)
+shape = SubResource("RectangleShape2D_fpf3o")
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

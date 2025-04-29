@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://by4p54l0stl85"]
+[gd_scene load_steps=14 format=3 uid="uid://by4p54l0stl85"]
 
 [ext_resource type="Texture2D" uid="uid://bai1u6v2k0o4u" path="res://OverWorld/OverWorldSprites/SewerSet.png" id="1_4x4he"]
 [ext_resource type="PackedScene" uid="uid://bm8qx3f3yey3w" path="res://OverWorld/overWorldChar.tscn" id="1_hncqj"]
@@ -173,6 +173,8 @@ texture = ExtResource("1_4x4he")
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_gwon1")
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8bo11"]
+
 [node name="Sewer" type="Node2D"]
 
 [node name="TileMap" type="TileMap" parent="."]
@@ -202,18 +204,38 @@ text = "100"
 
 [node name="Ein" parent="." instance=ExtResource("5_5hu0v")]
 position = Vector2(332, 41)
+collision_layer = 4
+collision_mask = 3
 
 [node name="Newt" parent="." instance=ExtResource("6_iuf6h")]
 position = Vector2(710, 39)
+collision_layer = 4
+collision_mask = 3
 
 [node name="Heisen" parent="." instance=ExtResource("7_8bo11")]
 position = Vector2(448, 42)
+collision_layer = 4
+collision_mask = 3
 
 [node name="Oppen" parent="." instance=ExtResource("8_1iucv")]
 position = Vector2(613, 35)
+collision_layer = 4
+collision_mask = 3
 
 [node name="Thorn" parent="." instance=ExtResource("9_iuf6h")]
 position = Vector2(878, 41)
+collision_layer = 4
+collision_mask = 3
 
 [node name="Exit" parent="." instance=ExtResource("10_8bo11")]
 position = Vector2(-49, 26)
+
+[node name="SewerExit" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SewerExit"]
+position = Vector2(-49, 26)
+shape = SubResource("RectangleShape2D_8bo11")
+
+[connection signal="body_entered" from="SewerExit" to="Player" method="_on_sewer_exit_body_entered"]

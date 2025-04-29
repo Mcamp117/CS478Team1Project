@@ -36,3 +36,11 @@ func _on_over_world_tree_exiting() -> void:
 func _on_over_world_tree_entered() -> void:
 	self.position=Player.location
 	pass # Replace with function body.
+
+
+func _on_lab_entrance_body_entered(body: Node2D) -> void:
+	get_tree().call_deferred("change_scene_to_file","res://LabScene/Lab.tscn")
+
+
+func _on_sewer_entrance_body_entered(body: Node2D) -> void:
+	get_tree().call_deferred("change_scene_to_file","res://SewerScene/Sewer.tscn")

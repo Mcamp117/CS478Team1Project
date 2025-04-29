@@ -23,3 +23,11 @@ func _input(event: InputEvent) -> void:
 		else:
 			inventory.queue_free()
 			inventory = Inventory.instantiate()
+
+
+func _on_lab_exit_body_entered(body: Node2D) -> void:
+	get_tree().call_deferred("change_scene_to_file", "res://OverWorld/world.tscn")
+
+
+func _on_sewer_exit_body_entered(body: Node2D) -> void:
+	get_tree().call_deferred("change_scene_to_file", "res://OverWorld/world.tscn")

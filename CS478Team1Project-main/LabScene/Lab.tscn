@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://cg7fgdi2aa26"]
+[gd_scene load_steps=10 format=3 uid="uid://cg7fgdi2aa26"]
 
 [ext_resource type="PackedScene" uid="uid://bm8qx3f3yey3w" path="res://OverWorld/overWorldChar.tscn" id="1_hxkia"]
 [ext_resource type="Texture2D" uid="uid://bvr12wnw820uy" path="res://OverWorld/OverWorldSprites/LabSet.png" id="1_sbb5e"]
@@ -165,6 +165,8 @@ texture = ExtResource("1_sbb5e")
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_6shac")
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_c6tce"]
+
 [node name="Node2D" type="Node2D"]
 
 [node name="TileMap" type="TileMap" parent="."]
@@ -199,3 +201,13 @@ collision_mask = 3
 
 [node name="Exit" parent="." instance=ExtResource("6_c6tce")]
 position = Vector2(-70, 25)
+
+[node name="LabExit" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LabExit"]
+position = Vector2(-70, 25)
+shape = SubResource("RectangleShape2D_c6tce")
+
+[connection signal="body_entered" from="LabExit" to="Player" method="_on_lab_exit_body_entered"]
